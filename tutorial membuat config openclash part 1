@@ -1,0 +1,33 @@
+  # assalamu alaikum warahmatulah wabarkatuh selamat
+  # hai datang di channel Master Wifi Network Solution
+  # Kali ini kita akan belajar membuat sebuah config openclash sendiri
+  # pertama kalian harus membuat proxy groups dulu
+  # tujuan adalah jika akun habis maka ingin kita ganti langsung ke folder proxy_provider
+  # ok langsung saja ya
+  
+---
+proxy-groups:     # ini tujuan nya adalah menandai barisan proxy provider ya sehingga rule provider nanti mengarahkan ke barisan sini
+- name: GAMEMASTER     # ini adalah nama salah satu di proxy group yang mengarah ke game
+  type: select        # select ini bertujuan untuk memilih salah satu akun proxy yang kita miliki namun bisa ubah jadi url-test untuk auto ping
+  disable-udp: false    # tujuan adalah untuk port UDP tidak tertutup dan bisa barengan sama port TCP
+  use:                   # ini di tujukan agar group proxy ini mengarahkan ke salah satu file dari proxy provider
+  - GameMaster         # ini adalah salah satu nama proxy provider dan induk di file config akun proxy itu sendiri
+proxy-provider:      # ini tujuannya adalah menandai barisan dari semua file config akun proxy kalian
+  GameMaster:    # dari sinilah use dari GAMEMASTER di gunakan
+    type: file     # saya lebih suka gunakan mode file ketimbang http karena lebih cepat dan jika mode http maka kalian harus punya data utama terlebih dahulu
+    path: "./proxy_provider/akungame.yaml   #  path ini adalah letak menaruh file akungame.yaml yang berisi akun proxy kalian
+    health-check:    # ini bertujuaan untuk melihat kualitas ping latency dari akun kalian di YACD
+      enable: true    # true di tujukan untuk mengaktifkan dari health-check tersebut namun jika tidak maka ganti dengan false
+      url: http://www.gstatic.com/generate_204      # ini adalah url untuk mengecek jaringan apakah koneksi berjalan atau tidak
+      interval: 99       # interval adalah jangka waktu untuk melakukan ping latency proxy di YACD seberapa cepat dia melakukan sebuah ping
+      
+     
+  # Jadi itulah cara membuat config pada struktur openclash
+  # kalo ingin menambahkan barisan proxy-group dan proxy-provider anda bisa salin barisan tersebut di atas ini lalu tempelkan lagi di bawahnya dan ubah lah nama
+  # seperti SOSMEDMASTER di proxy-groups dan SosmedMaster pada proxy-provider nya
+  # semoga bermanfaat dan bisa di pelajari dengan mudah bagi yang baru mencoba menggunakan atau pun mempelajari tentang openclash
+  # jika suka silahkan like video saya
+  # jangan lupa subscribe nya agar channel ini bisa berkembang dan selalu memberikan yang terbaik untuk anda
+  # aktifkan tombol lonceng agar selalu dapat info update terbaru dari saya
+  # dan jika bermanfaat silahkan di share
+  # assalamu alaikum warahmatulah wabarkatuh
