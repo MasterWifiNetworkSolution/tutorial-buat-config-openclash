@@ -1,0 +1,25 @@
+  # tutorial membuat config openclash part 3
+  # mengisi bagian rule provider RULE SET dan script nanti ada di part 4
+  
+rule-provider:
+  GameMaster:
+    type: file
+    behavior: classical
+    path: ./rule_provider/RuleGameMaster.yaml
+  SosmedMaster:
+    type: file
+    behavior: classical
+    path: ./rule_provider/RuleSosmedMaster.yaml
+  StreamMaster:
+    type: file
+    behavior: classical
+    path: ./rule_provider/RuleStreamMaster.yaml
+  BrowserMaster:
+    type: file
+    behavior: classical
+    path: ./rule_provider/RuleBrowserMaster.yaml
+rules:
+- RULE-SET,GameMaster,GAMEMASTER    # DARI KIRI RULES LALU RULE-PROVIDER LALU KE PROXY-GROUPS
+- RULE-SET,SosmedMaster,SOSMEDMASTER
+- RULE-SET,StreamMaster,STREAMMASTER
+- RULE-SET,BrowserMaster,BROWSERMASTER
