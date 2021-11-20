@@ -1,0 +1,124 @@
+  # Assalamu alaikum warahmatulah wabarkatuh
+  # kita berjumpa kembali di channel saya
+  # Master Wifi Network Solution
+  # Kali ini kita akan belajar kembali cara membuat config openclash pada tahapan port openclash dan dns
+  # juga bagian fallback dan fake ip
+  # ok langsung saja kita lanjutkan pembuatan config dari tutorial part 1
+  
+redir-port: 7892    # ini adalah port bagian jalur redirect
+tproxy-port: 7895   # ini adalah port bagian jalur tunnel proxy
+port: 7890          # ini adalah port dari bagian openclash
+socks-port: 7891    # kalo menggunakan socks wajib di isi
+mixed-port: 7893    # ini berfungsi untuk menggabungkan semua port yang ada
+mode: rule          # mode ini untuk rules bisa ganti dengan global atau script atau direct
+log-level: info     # ini bertujuan di YACD bisa menampilkan info secara detail
+allow-lan: true     # bertujuan agar bisa koneksi di LAN bisa jalan kalo CFA false
+external-controller: 0.0.0.0:9090    # ini adalah ip standart untuk bisa masuk ke YACD
+secret: 123456                       # kode keamanan untuk masuk ke YACD
+bind-address: "*"                    # jika ada alamat ip yang ingin di bypass bisa di isikan
+external-ui:: "/usr/share/openclash/dashboard"    # ini lokasi penyimpanan di luci openwrt
+
+
+  # ok itu adalah barisan pada bagian port openclash
+  # sekarang kita akan belajar lagi cara mengisi bagian dns
+  
+dns:
+  enable: true      # ini adalah untuk mengaktifkan dns pada openclash
+  ipv6: false       # saya false karena tidak menggunakan ipv6 namun bagi anda aktif ipv6 boleh true
+  enchanced-mode: redir-host    # disni kita akan masuk ke menu host namun jika ingin mode ip bisa ganti jadi fake-ip
+  listen: 127.0.0.1:7874      # ini adalah ip proxy standar
+  default-nameserver:        # bagian standar pada dns openclash
+  - 144.144.144.144         # dns yang kita gunakan dari alidns-google-cloudflare-dan opennds
+  - 119.29.29.29
+  - 8.8.8.8
+  - 8.8.4.4
+  - 1.1.1.1
+  - 1.0.0.1
+  nameserver:
+  - 144.144.144.144   # dns ini juga standart agar koneksi bisa lancar
+  - 119.29.29.29
+  - 8.8.8.8
+  - 8.8.4.4
+  - 1.1.1.1
+  - 1.0.0.1
+  
+  
+  
+  # sekarang kita akan lanjutkan pembelajaran kembali pada fallback-filter dan fake-ip-filter
+  # tujuan nya adalah untuk record data yang sudah masuk ke jaringan kita jadi untuk mempercepat koneksi
+  
+  fallback:
+  - https://cloudflare-dns.com/dns-query   # dns over cloudflare
+  - https://dns.google/dns-query           # dns over google
+  - https://1.1.1.1/dns-query              # ip dns over cloudflare
+  - tls://8.8.8.8:853                      # tls over google
+  - tls://dns.rubyfish.cn:853              # tls over ruby
+  fallback-filter:                         # tujuan memfilterasi ipcidr global
+    geoip: true
+    - 0.0.0.0/8
+    - 10.0.0.0/8
+    - 100.64.0.0/10
+    - 127.0.0.0/8
+    - 169.254.0.0/16
+    - 172.16.0.0/12
+    - 192.0.0.0/24
+    - 192.0.2.0/24
+    - 192.88.99.0/24
+    - 192.168.0.0/16
+    - 198.18.0.0/16
+    - 198.51.100.0/24
+    - 203.0.113.0/24
+    - 224.0.0.0/4
+    - 240.0.0.0/4
+    - 255.255.255.255/32
+    domain:                        # tujuan nya filter host wildcard
+    - "+.google.com"
+    - "+.facebook.com"
+    - "+.youtube.com"
+    - "+.githubusercontent.com"
+    fake-ip-filter:               # tujuan nya untuk filterasi ip pengalihan
+    - "*.lan"                     # dalam barisan ini kita memfilter bagian jam dunia
+    - time.windows.com
+    - time.nist.gov
+    - time.apple.com
+    - time.asia.apple.com
+    - "*.ntp.org.cn"
+    - "*.openwrt.pool.ntp.org"
+    - time1.cloud.tencent.com
+    - time.ustc.edu.cn
+    - 0.id.pool.ntp.org
+    - 1.id.pool.ntp.org
+    - 2.id.pool.ntp.org
+    - 3.id.pool.ntp.org
+  ipv6: false
+  
+  
+    # itu lah tutorial lanjutan part2 yaitu cara membuat config openclash
+    # jika suka silahkan di like dan beri komentar di bawah
+    # jangan lupa berlangganan channel saya dengan tekan subscribe
+    # dan aktifkan tombol lonceng nya biar selalu dapat informasi terbaru dari saya
+    # sampai jumpa di video saya selanjutnya
+    # assalamu alaikum warahmatulah wabarkatuh
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
